@@ -32,4 +32,4 @@ This is used to (dis)connect the 5V power supply from the PI.
 
 Ref | Qty | Value | Digikey | Datasheet | Description
 ----|-----|-------|---------|-----------|------------
-J3 | 1 | S9337-ND | https://s3.amazonaws.com/catalogspreads-pdf/PAGE128-129%20.100%20JUMPER.pdf | Shorting Block | Shorting Jumper
+J3 | 1 | Shorting Block | S9337-ND | https://s3.amazonaws.com/catalogspreads-pdf/PAGE128-129%20.100%20JUMPER.pdf | Shorting Jumper
