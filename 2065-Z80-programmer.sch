@@ -108,7 +108,7 @@ F 3 "" H 2850 3500 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2850 3500 2850 3600
+	2850 3500 2850 3550
 $Comp
 L JWlib:2N7000 Q1
 U 1 1 612D0203
@@ -173,7 +173,7 @@ Wire Wire Line
 	2800 2800 2800 2900
 Connection ~ 2800 2900
 Wire Wire Line
-	2800 2900 3550 2900
+	2800 2900 3100 2900
 $Comp
 L power:+5V #PWR05
 U 1 1 612D0228
@@ -186,9 +186,9 @@ F 3 "" H 2800 2400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2800 2400 2800 2500
+	2800 2400 2800 2450
 Wire Wire Line
-	2850 4000 4500 4000
+	2850 4000 3150 4000
 Wire Wire Line
 	4500 3900 3550 3900
 Wire Wire Line
@@ -1283,4 +1283,56 @@ Wire Wire Line
 Connection ~ 4400 4300
 Wire Wire Line
 	4400 4300 4000 4300
+$Comp
+L Device:D D1
+U 1 1 618EEB95
+P 3100 2650
+F 0 "D1" V 3054 2729 50  0000 L CNN
+F 1 "1N914" V 3145 2729 50  0000 L CNN
+F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 3100 2650 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 3100 2650 50  0001 C CNN
+F 4 "1N4148FSCT-ND" H 3100 2650 50  0001 C CNN "Digi-Key_PN"
+F 5 "1N4148TR" H 3100 2650 50  0001 C CNN "MPN"
+F 6 "onsemi" H 3100 2650 50  0001 C CNN "Manufacturer"
+	1    3100 2650
+	0    1    1    0   
+$EndComp
+Connection ~ 3100 2900
+Wire Wire Line
+	3100 2900 3550 2900
+Wire Wire Line
+	3100 2800 3100 2900
+Wire Wire Line
+	3100 2500 3100 2450
+Wire Wire Line
+	3100 2450 2800 2450
+Connection ~ 2800 2450
+Wire Wire Line
+	2800 2450 2800 2500
+$Comp
+L Device:D D2
+U 1 1 6190C4CE
+P 3150 3750
+F 0 "D2" V 3104 3829 50  0000 L CNN
+F 1 "1N914" V 3195 3829 50  0000 L CNN
+F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 3150 3750 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 3150 3750 50  0001 C CNN
+F 4 "1N4148FSCT-ND" H 3150 3750 50  0001 C CNN "Digi-Key_PN"
+F 5 "1N4148TR" H 3150 3750 50  0001 C CNN "MPN"
+F 6 "onsemi" H 3150 3750 50  0001 C CNN "Manufacturer"
+	1    3150 3750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3150 3900 3150 4000
+Wire Wire Line
+	3150 3600 3150 3550
+Wire Wire Line
+	3150 3550 2850 3550
+Connection ~ 3150 4000
+Wire Wire Line
+	3150 4000 4500 4000
+Connection ~ 2850 3550
+Wire Wire Line
+	2850 3550 2850 3600
 $EndSCHEMATC
