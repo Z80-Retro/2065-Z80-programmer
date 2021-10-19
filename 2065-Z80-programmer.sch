@@ -40,7 +40,11 @@ P 2450 3900
 F 0 "Q2" V 2701 3900 50  0000 C CNN
 F 1 "2N7000" V 2792 3900 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-92" H 2650 3825 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 2450 3900 50  0001 L CNN
+F 3 "https://rocelec.widen.net/view/pdf/orqxwkxkq1/ONSM-S-A0003544006-1.pdf?t.download=true&u=5oefqw" H 2450 3900 50  0001 L CNN
+F 4 "MOSFET N-CH 60V 200MA TO92-3" H 2450 3900 50  0001 C CNN "Description"
+F 5 "2N7000TACT-ND" H 2450 3900 50  0001 C CNN "Digi-Key_PN"
+F 6 "2N7000TA" H 2450 3900 50  0001 C CNN "MPN"
+F 7 "onsemi" H 2450 3900 50  0001 C CNN "Manufacturer"
 	1    2450 3900
 	0    1    1    0   
 $EndComp
@@ -49,9 +53,13 @@ L Device:R R3
 U 1 1 612B9D7F
 P 2050 3750
 F 0 "R3" V 1950 3700 50  0000 L CNN
-F 1 "2K2" V 2050 3700 50  0000 L CNN
+F 1 "2K7" V 2050 3700 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 1980 3750 50  0001 C CNN
-F 3 "~" H 2050 3750 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 2050 3750 50  0001 C CNN
+F 4 "RES 2.7K OHM 5% 1/8W AXIAL" H 2050 3750 50  0001 C CNN "Description"
+F 5 "CF18JT2K70CT-ND" H 2050 3750 50  0001 C CNN "Digi-Key_PN"
+F 6 "CF18JT2K70" H 2050 3750 50  0001 C CNN "MPN"
+F 7 "Stackpole Electronics Inc" H 2050 3750 50  0001 C CNN "Manufacturer"
 	1    2050 3750
 	1    0    0    -1  
 $EndComp
@@ -87,9 +95,13 @@ L Device:R R4
 U 1 1 612BD71E
 P 2850 3750
 F 0 "R4" V 2750 3700 50  0000 L CNN
-F 1 "2K2" V 2850 3700 50  0000 L CNN
+F 1 "2K7" V 2850 3700 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 2780 3750 50  0001 C CNN
-F 3 "~" H 2850 3750 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 2850 3750 50  0001 C CNN
+F 4 "RES 2.7K OHM 5% 1/8W AXIAL" H 2850 3750 50  0001 C CNN "Description"
+F 5 "CF18JT2K70CT-ND" H 2850 3750 50  0001 C CNN "Digi-Key_PN"
+F 6 "CF18JT2K70" H 2850 3750 50  0001 C CNN "MPN"
+F 7 "Stackpole Electronics Inc" H 2850 3750 50  0001 C CNN "Manufacturer"
 	1    2850 3750
 	1    0    0    -1  
 $EndComp
@@ -116,7 +128,11 @@ P 2400 2800
 F 0 "Q1" V 2651 2800 50  0000 C CNN
 F 1 "2N7000" V 2742 2800 50  0000 C CNN
 F 2 "Package_TO_SOT_THT:TO-92" H 2600 2725 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7000.pdf" H 2400 2800 50  0001 L CNN
+F 3 "https://rocelec.widen.net/view/pdf/orqxwkxkq1/ONSM-S-A0003544006-1.pdf?t.download=true&u=5oefqw" H 2400 2800 50  0001 L CNN
+F 4 "MOSFET N-CH 60V 200MA TO92-3" H 2400 2800 50  0001 C CNN "Description"
+F 5 "2N7000TACT-ND" H 2400 2800 50  0001 C CNN "Digi-Key_PN"
+F 6 "2N7000TA" H 2400 2800 50  0001 C CNN "MPN"
+F 7 "onsemi" H 2400 2800 50  0001 C CNN "Manufacturer"
 	1    2400 2800
 	0    1    1    0   
 $EndComp
@@ -125,9 +141,13 @@ L Device:R R1
 U 1 1 612D0209
 P 2000 2650
 F 0 "R1" V 1900 2600 50  0000 L CNN
-F 1 "2K2" V 2000 2600 50  0000 L CNN
+F 1 "2K7" V 2000 2600 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 1930 2650 50  0001 C CNN
-F 3 "~" H 2000 2650 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 2000 2650 50  0001 C CNN
+F 4 "RES 2.7K OHM 5% 1/8W AXIAL" H 2000 2650 50  0001 C CNN "Description"
+F 5 "CF18JT2K70CT-ND" H 2000 2650 50  0001 C CNN "Digi-Key_PN"
+F 6 "CF18JT2K70" H 2000 2650 50  0001 C CNN "MPN"
+F 7 "Stackpole Electronics Inc" H 2000 2650 50  0001 C CNN "Manufacturer"
 	1    2000 2650
 	1    0    0    -1  
 $EndComp
@@ -163,9 +183,13 @@ L Device:R R2
 U 1 1 612D021F
 P 2800 2650
 F 0 "R2" V 2700 2600 50  0000 L CNN
-F 1 "2K2" V 2800 2600 50  0000 L CNN
+F 1 "2K7" V 2800 2600 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 2730 2650 50  0001 C CNN
-F 3 "~" H 2800 2650 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 2800 2650 50  0001 C CNN
+F 4 "RES 2.7K OHM 5% 1/8W AXIAL" H 2800 2650 50  0001 C CNN "Description"
+F 5 "CF18JT2K70CT-ND" H 2800 2650 50  0001 C CNN "Digi-Key_PN"
+F 6 "CF18JT2K70" H 2800 2650 50  0001 C CNN "MPN"
+F 7 "Stackpole Electronics Inc" H 2800 2650 50  0001 C CNN "Manufacturer"
 	1    2800 2650
 	1    0    0    -1  
 $EndComp
@@ -394,7 +418,9 @@ P 3400 1050
 F 0 "C1" H 3492 1096 50  0000 L CNN
 F 1 ".1uF" H 3492 1005 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" H 3400 1050 50  0001 C CNN
-F 3 "~" H 3400 1050 50  0001 C CNN
+F 3 "https://api.kemet.com/component-edge/download/specsheet/C315C104M5U5TA7303.pdf" H 3400 1050 50  0001 C CNN
+F 4 "CAP CER 0.1UF 50V Z5U RADIAL" H 3400 1050 50  0001 C CNN "Description"
+F 5 "399-9859-1-ND‎" H 3400 1050 50  0001 C CNN "Digi-Key_PN"
 	1    3400 1050
 	1    0    0    -1  
 $EndComp
@@ -405,7 +431,9 @@ P 3850 1050
 F 0 "C2" H 3942 1096 50  0000 L CNN
 F 1 ".1uF" H 3942 1005 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" H 3850 1050 50  0001 C CNN
-F 3 "~" H 3850 1050 50  0001 C CNN
+F 3 "https://api.kemet.com/component-edge/download/specsheet/C315C104M5U5TA7303.pdf" H 3850 1050 50  0001 C CNN
+F 4 "CAP CER 0.1UF 50V Z5U RADIAL" H 3850 1050 50  0001 C CNN "Description"
+F 5 "399-9859-1-ND‎" H 3850 1050 50  0001 C CNN "Digi-Key_PN"
 	1    3850 1050
 	1    0    0    -1  
 $EndComp
@@ -416,7 +444,9 @@ P 4300 1050
 F 0 "C3" H 4392 1096 50  0000 L CNN
 F 1 ".1uF" H 4392 1005 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" H 4300 1050 50  0001 C CNN
-F 3 "~" H 4300 1050 50  0001 C CNN
+F 3 "https://api.kemet.com/component-edge/download/specsheet/C315C104M5U5TA7303.pdf" H 4300 1050 50  0001 C CNN
+F 4 "CAP CER 0.1UF 50V Z5U RADIAL" H 4300 1050 50  0001 C CNN "Description"
+F 5 "399-9859-1-ND‎" H 4300 1050 50  0001 C CNN "Digi-Key_PN"
 	1    4300 1050
 	1    0    0    -1  
 $EndComp
@@ -492,7 +522,9 @@ P 1050 1600
 F 0 "J1" H 1250 1150 50  0000 C CNN
 F 1 "Conn_01x05" H 1250 1250 50  0001 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 1050 1600 50  0001 C CNN
-F 3 "~" H 1050 1600 50  0001 C CNN
+F 3 "https://media.digikey.com/PDF/Data%20Sheets/Sullins%20PDFs/xRxCzzzSxxN-RC_ST_11635-B.pdf" H 1050 1600 50  0001 C CNN
+F 4 "Generic connector, single row, 01x05" H 1050 1600 50  0001 C CNN "Description"
+F 5 "S1211EC-05-ND" H 1050 1600 50  0001 C CNN "Digi-Key_PN"
 	1    1050 1600
 	-1   0    0    1   
 $EndComp
@@ -702,7 +734,9 @@ P 8800 3350
 F 0 "J2" H 8850 4400 50  0000 C CNN
 F 1 "Conn_02x20_Counter_Clockwise" H 8850 4376 50  0001 C CNN
 F 2 "jb-footprint:PinHeader_2x20_P2.54mm_Vertical_counterclock" H 8800 3350 50  0001 C CNN
-F 3 "~" H 8800 3350 50  0001 C CNN
+F 3 "https://drawings-pdf.s3.amazonaws.com/11636.pdf" H 8800 3350 50  0001 C CNN
+F 4 "Generic connector, double row, 02x20" H 8800 3350 50  0001 C CNN "Description"
+F 5 "S2011EC-20-ND" H 8800 3350 50  0001 C CNN "Digi-Key_PN"
 	1    8800 3350
 	1    0    0    -1  
 $EndComp
@@ -718,7 +752,7 @@ AR Path="/615C0CED/615F38C9" Ref="LOGO?"  Part="1"
 F 0 "LOGO10" H 10250 7375 50  0001 C CNN
 F 1 "Logo_Open_Hardware_Small" H 10250 6875 50  0001 C CNN
 F 2 "Symbol:OSHW-Logo_11.4x12mm_SilkScreen" H 10250 7100 50  0001 C CNN
-F 3 "~" H 10250 7100 50  0001 C CNN
+F 3 "" H 10250 7100 50  0001 C CNN
 	1    10250 7100
 	1    0    0    -1  
 $EndComp
@@ -790,7 +824,7 @@ P 7650 5750
 F 0 "H1" H 7750 5796 50  0000 L CNN
 F 1 "MountingHole" H 7750 5705 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965" H 7650 5750 50  0001 C CNN
-F 3 "~" H 7650 5750 50  0001 C CNN
+F 3 "" H 7650 5750 50  0001 C CNN
 	1    7650 5750
 	1    0    0    -1  
 $EndComp
@@ -801,7 +835,7 @@ P 7650 6000
 F 0 "H2" H 7750 6046 50  0000 L CNN
 F 1 "MountingHole" H 7750 5955 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965" H 7650 6000 50  0001 C CNN
-F 3 "~" H 7650 6000 50  0001 C CNN
+F 3 "" H 7650 6000 50  0001 C CNN
 	1    7650 6000
 	1    0    0    -1  
 $EndComp
@@ -812,7 +846,7 @@ P 7650 6250
 F 0 "H3" H 7750 6296 50  0000 L CNN
 F 1 "MountingHole" H 7750 6205 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965" H 7650 6250 50  0001 C CNN
-F 3 "~" H 7650 6250 50  0001 C CNN
+F 3 "" H 7650 6250 50  0001 C CNN
 	1    7650 6250
 	1    0    0    -1  
 $EndComp
@@ -823,7 +857,7 @@ P 7650 6500
 F 0 "H4" H 7750 6546 50  0000 L CNN
 F 1 "MountingHole" H 7750 6455 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965" H 7650 6500 50  0001 C CNN
-F 3 "~" H 7650 6500 50  0001 C CNN
+F 3 "" H 7650 6500 50  0001 C CNN
 	1    7650 6500
 	1    0    0    -1  
 $EndComp
@@ -834,7 +868,10 @@ P 2550 1050
 F 0 "C5" H 2641 1096 50  0000 L CNN
 F 1 "10uF" H 2641 1005 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 2550 1050 50  0001 C CNN
-F 3 "~" H 2550 1050 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 2550 1050 50  0001 C CNN
+F 4 "CAP ALUM 10UF 20% 25V RADIAL" H 2550 1050 50  0001 C CNN "Description"
+F 5 "P975-ND" H 2550 1050 50  0001 C CNN "Digi-Key_PN"
+F 6 "ECE-A1EKS100" H 2550 1050 50  0001 C CNN "MPN"
 	1    2550 1050
 	1    0    0    -1  
 $EndComp
@@ -845,7 +882,9 @@ P 4700 1050
 F 0 "C6" H 4792 1096 50  0000 L CNN
 F 1 ".1uF" H 4792 1005 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" H 4700 1050 50  0001 C CNN
-F 3 "~" H 4700 1050 50  0001 C CNN
+F 3 "https://api.kemet.com/component-edge/download/specsheet/C315C104M5U5TA7303.pdf" H 4700 1050 50  0001 C CNN
+F 4 "CAP CER 0.1UF 50V Z5U RADIAL" H 4700 1050 50  0001 C CNN "Description"
+F 5 "399-9859-1-ND‎" H 4700 1050 50  0001 C CNN "Digi-Key_PN"
 	1    4700 1050
 	1    0    0    -1  
 $EndComp
@@ -862,7 +901,9 @@ P 2200 1050
 F 0 "C4" H 2292 1096 50  0000 L CNN
 F 1 ".1uF" H 2292 1005 50  0000 L CNN
 F 2 "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" H 2200 1050 50  0001 C CNN
-F 3 "~" H 2200 1050 50  0001 C CNN
+F 3 "https://api.kemet.com/component-edge/download/specsheet/C315C104M5U5TA7303.pdf" H 2200 1050 50  0001 C CNN
+F 4 "CAP CER 0.1UF 50V Z5U RADIAL" H 2200 1050 50  0001 C CNN "Description"
+F 5 "399-9859-1-ND‎" H 2200 1050 50  0001 C CNN "Digi-Key_PN"
 	1    2200 1050
 	1    0    0    -1  
 $EndComp
@@ -905,7 +946,10 @@ P 5050 1050
 F 0 "C7" H 5141 1096 50  0000 L CNN
 F 1 "10uF" H 5141 1005 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 5050 1050 50  0001 C CNN
-F 3 "~" H 5050 1050 50  0001 C CNN
+F 3 "https://industrial.panasonic.com/cdbs/www-data/pdf/RDF0000/ABA0000C1059.pdf" H 5050 1050 50  0001 C CNN
+F 4 "CAP ALUM 10UF 20% 25V RADIAL" H 5050 1050 50  0001 C CNN "Description"
+F 5 "P975-ND" H 5050 1050 50  0001 C CNN "Digi-Key_PN"
+F 6 "ECE-A1EKS100" H 5050 1050 50  0001 C CNN "MPN"
 	1    5050 1050
 	1    0    0    -1  
 $EndComp
@@ -926,7 +970,9 @@ P 4000 6350
 F 0 "J4" H 4050 7375 50  0000 C CNN
 F 1 "Conn_02x20_Odd_Even" H 4050 7376 50  0001 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x20_P2.54mm_Vertical" H 4000 6350 50  0001 C CNN
-F 3 "~" H 4000 6350 50  0001 C CNN
+F 3 "https://drawings-pdf.s3.amazonaws.com/11636.pdf" H 4000 6350 50  0001 C CNN
+F 4 "Generic connector, double row, 02x20" H 4000 6350 50  0001 C CNN "Description"
+F 5 "S2011EC-20-ND" H 4000 6350 50  0001 C CNN "Digi-Key_PN"
 	1    4000 6350
 	1    0    0    -1  
 $EndComp
@@ -937,7 +983,9 @@ P 4800 5200
 F 0 "J3" V 4718 5012 50  0000 R CNN
 F 1 "Conn_01x02" H 4880 5101 50  0001 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4800 5200 50  0001 C CNN
-F 3 "~" H 4800 5200 50  0001 C CNN
+F 3 "https://media.digikey.com/PDF/Data%20Sheets/Sullins%20PDFs/xRxCzzzSxxN-RC_ST_11635-B.pdf" H 4800 5200 50  0001 C CNN
+F 4 "Generic connector, single row, 01x02" H 4800 5200 50  0001 C CNN "Description"
+F 5 "S1011EC-02-ND" H 4800 5200 50  0001 C CNN "Digi-Key_PN"
 	1    4800 5200
 	0    -1   -1   0   
 $EndComp
@@ -1114,7 +1162,11 @@ P 3850 4300
 F 0 "R5" V 3750 4250 50  0000 L CNN
 F 1 "10K" V 3850 4250 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 3780 4300 50  0001 C CNN
-F 3 "~" H 3850 4300 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 3850 4300 50  0001 C CNN
+F 4 "Stackpole Electronics Inc" H 3850 4300 50  0001 C CNN "Manufacturer"
+F 5 "RES 10K OHM 5% 1/8W AXIAL" H 3850 4300 50  0001 C CNN "Description"
+F 6 "CF18JT10K0CT-ND" H 3850 4300 50  0001 C CNN "Digi-Key_PN"
+F 7 "CF18JT10K0" H 3850 4300 50  0001 C CNN "MPN"
 	1    3850 4300
 	0    1    1    0   
 $EndComp
@@ -1127,7 +1179,11 @@ P 5850 4300
 F 0 "R6" V 5750 4250 50  0000 L CNN
 F 1 "10K" V 5850 4250 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 5780 4300 50  0001 C CNN
-F 3 "~" H 5850 4300 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 5850 4300 50  0001 C CNN
+F 4 "Stackpole Electronics Inc" H 5850 4300 50  0001 C CNN "Manufacturer"
+F 5 "RES 10K OHM 5% 1/8W AXIAL" H 5850 4300 50  0001 C CNN "Description"
+F 6 "CF18JT10K0CT-ND" H 5850 4300 50  0001 C CNN "Digi-Key_PN"
+F 7 "CF18JT10K0" H 5850 4300 50  0001 C CNN "MPN"
 	1    5850 4300
 	0    1    1    0   
 $EndComp
@@ -1140,7 +1196,9 @@ P 7150 1300
 F 0 "Q3" H 7340 1346 50  0000 L CNN
 F 1 "PN2222" H 7340 1255 50  0000 L CNN
 F 2 "Package_TO_SOT_THT:TO-92L" H 7350 1400 50  0001 C CNN
-F 3 "~" H 7150 1300 50  0001 C CNN
+F 3 "https://my.centralsemi.com/datasheets/PN2221-2222A.PDF" H 7150 1300 50  0001 C CNN
+F 4 "NPN transistor" H 7150 1300 50  0001 C CNN "Description"
+F 5 "1514-PN2222APBFREE-ND" H 7150 1300 50  0001 C CNN "Digi-Key_PN"
 	1    7150 1300
 	1    0    0    -1  
 $EndComp
@@ -1151,7 +1209,11 @@ P 6650 1300
 F 0 "R7" V 6550 1250 50  0000 L CNN
 F 1 "1K" V 6650 1250 50  0000 L CNN
 F 2 "Resistor_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P5.08mm_Horizontal" V 6580 1300 50  0001 C CNN
-F 3 "~" H 6650 1300 50  0001 C CNN
+F 3 "https://www.seielect.com/catalog/sei-cf_cfm.pdf" H 6650 1300 50  0001 C CNN
+F 4 "RES 1K OHM 5% 1/8W AXIAL" H 6650 1300 50  0001 C CNN "Description"
+F 5 "CF18JT1K00CT-ND" H 6650 1300 50  0001 C CNN "Digi-Key_PN"
+F 6 "CF18JT1K00" H 6650 1300 50  0001 C CNN "MPN"
+F 7 "Stackpole Electronics Inc" H 6650 1300 50  0001 C CNN "Manufacturer"
 	1    6650 1300
 	0    1    1    0   
 $EndComp
@@ -1183,7 +1245,7 @@ P 9000 5850
 F 0 "H5" H 9100 5896 50  0000 L CNN
 F 1 "MountingHole" H 9100 5805 50  0000 L CNN
 F 2 "MountingHole:MountingHole_2.7mm_M2.5_DIN965" H 9000 5850 50  0001 C CNN
-F 3 "~" H 9000 5850 50  0001 C CNN
+F 3 "" H 9000 5850 50  0001 C CNN
 	1    9000 5850
 	1    0    0    -1  
 $EndComp
@@ -1294,6 +1356,7 @@ F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 3100 2650 50  0001 C CNN
 F 4 "1N4148FSCT-ND" H 3100 2650 50  0001 C CNN "Digi-Key_PN"
 F 5 "1N4148TR" H 3100 2650 50  0001 C CNN "MPN"
 F 6 "onsemi" H 3100 2650 50  0001 C CNN "Manufacturer"
+F 7 "100V 0.3A Small Signal Fast Switching Diode, DO-35" H 3100 2650 50  0001 C CNN "Description"
 	1    3100 2650
 	0    1    1    0   
 $EndComp
@@ -1320,6 +1383,7 @@ F 3 "http://www.vishay.com/docs/85622/1n914.pdf" H 3150 3750 50  0001 C CNN
 F 4 "1N4148FSCT-ND" H 3150 3750 50  0001 C CNN "Digi-Key_PN"
 F 5 "1N4148TR" H 3150 3750 50  0001 C CNN "MPN"
 F 6 "onsemi" H 3150 3750 50  0001 C CNN "Manufacturer"
+F 7 "100V 0.3A Small Signal Fast Switching Diode, DO-35" H 3150 3750 50  0001 C CNN "Description"
 	1    3150 3750
 	0    1    1    0   
 $EndComp
