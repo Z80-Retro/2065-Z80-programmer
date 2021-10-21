@@ -5,6 +5,6 @@ An in-circuit programmer for the FLASH on a [2063-Z80](https://github.com/johnwi
 * A PDF version of the schematic can be found [here](2065-Z80-programmer.pdf).
 * Here is the as-built [BOM](2065-Z80-programmer.md) with links to the datasheets for all the parts.
 * Here is another [BOM](2065-Z80-programmer-sockets.md) with links to sockets for the chips.
-* The software for this project will be added as it evolves.
+* A Raspberry PI application for this board can be found in the [pi](pi) directory.
 
 ![PC Board Image](2065-Z80-programmer.jpg "ICE FLASH Programmer for 2063-Z80.jpg")
