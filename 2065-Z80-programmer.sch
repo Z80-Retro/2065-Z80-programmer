@@ -733,7 +733,7 @@ U 1 1 615D67ED
 P 8800 3350
 F 0 "J2" H 8850 4400 50  0000 C CNN
 F 1 "Conn_02x20_Counter_Clockwise" H 8850 4376 50  0001 C CNN
-F 2 "jb-footprint:PinHeader_2x20_P2.54mm_Vertical_counterclock" H 8800 3350 50  0001 C CNN
+F 2 "jb-footprint:PinSocket_2x20_P2.54mm_Vertical_clockwise" H 8800 3350 50  0001 C CNN
 F 3 "https://media.digikey.com/pdf/Data%20Sheets/Sullins%20PDFs/Female_Headers.100_DS.pdf" H 8800 3350 50  0001 C CNN
 F 4 "Female connector, double row, 02x20" H 8800 3350 50  0001 C CNN "Description"
 F 5 "S6104-ND" H 8800 3350 50  0001 C CNN "Digi-Key_PN"
