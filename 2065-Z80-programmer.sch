@@ -811,8 +811,6 @@ NoConn ~ 5300 2600
 NoConn ~ 5300 2700
 NoConn ~ 7150 2600
 NoConn ~ 7150 2700
-NoConn ~ 7200 2650
-NoConn ~ 6900 2300
 NoConn ~ 9100 3650
 NoConn ~ 9100 4050
 NoConn ~ 8600 4150
