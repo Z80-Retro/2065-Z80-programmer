@@ -61,8 +61,10 @@
 
 #define I2C_DEV "/dev/i2c-1"
 
-#define I2C_EX1		(0x26)
-#define I2C_EX2		(0x24)
+// MCP23017 (expand-o chip) I2C addresses
+#define I2C_EX1		(0x26)	///< the one connected to the address bus
+#define I2C_EX2		(0x24)	///< the one connected to the control and data bus
+
 
 // I2C_EX1 A addr [0..7]
 // I2C_EX1 B addr [8..15]
@@ -70,14 +72,44 @@
 // I2C_EX2 B bus control [RESET, /RD, /WR, /MREQ, /IORQ, /BUSRQ, /BUSACK, /M1]
 
 // control bus pin assignment on EX2 port B
-#define	IO_RESET	(0x01)	// out
-#define	IO_RD		(0x02)	// out
-#define	IO_WR		(0x04)	// out
-#define	IO_MREQ		(0x08)	// out
-#define	IO_IORQ		(0x10)	// out
-#define	IO_BUSRQ	(0x20)	// out
-#define	IO_BUSACK	(0x40)	// out
-#define	IO_M1		(0x80)	// out
+#define	IO_RESET	(0x01)	///< ALWAYS output
+#define	IO_RD		(0x02)	///< output when take over the bus, else input/float
+#define	IO_WR		(0x04)	///< output when take over the bus, else input/float
+#define	IO_MREQ		(0x08)	///< output when take over the bus, else input/float
+#define	IO_IORQ		(0x10)	///< output when take over the bus, else input/float
+#define	IO_BUSRQ	(0x20)	///< ALWAYS output
+#define	IO_BUSACK	(0x40)	///< ALWAYS input
+#define	IO_M1		(0x80)	///< ALWAYS input
+
+// These are used to configure the control ports when transitioning from 
+// passive to active control mode (ie, when the Z80 bus is taken over by the
+// programmer.  Direction control = 1 for inputs, 0 for outputs.
+#define IO_DIR_BUS_CTL_ON	(IO_BUSACK|IO_M1)		// all out (0) except /BUSACK & /M1
+#define IO_DIR_BUS_CTL_OFF	(~(IO_RESET|IO_BUSRQ))	// /BUSRQ & RESET = out, all others=in
+
+
+// These are used to set the direction of all 8 bits of a port to in or out
+// mode when configuring the address and data lines.
+#define IO_DIR_BUS_AD_IN	(0xff)	// all bits = 1 = input
+#define IO_DIR_BUS_AD_OUT	(0)		// all bits = 0 = output
+
+
+/**
+* This is used to make the logic that has to toggle one bit (without
+* knowing the state of the others) easier to implement.
+* It is initialized to the power-on-reset value of the MCP23017 chip.
+*****************************************************************************/
+static uint8_t ctl_cache = 0xff;		// a copy of the last-written control latch value
+
+/**
+* This is a copy of the last-written data-direction seting.
+* We use it to figure out if it needs to be changed or not when
+* we need to put it into a given direction.
+* It is initialized into an impossible value so that the 'first time'
+* it is checked, it will indicate that it needs to be set.
+*****************************************************************************/
+static uint8_t data_dir_cache = 0x0f;
+
 
 /**
 * Open the I2C port.
@@ -118,9 +150,56 @@ int mcp23017_write(int iic, int addr, uint8_t a, uint8_t b)
         DBG("write() failed %d\n", rc);
 		return -1;
 	}
-
 	return 0;
 }
+
+/**
+* Write a byte to port A
+*****************************************************************************/
+int mcp23017_write_a(int iic, int addr, uint8_t a)
+{
+    int rc = 0;
+    rc = ioctl(iic, I2C_SLAVE, addr);
+    if (rc < 0)
+	{
+        DBG("ioctl(I2C_SLAVE, %d) failed.  rc=%d\n", addr, rc);
+		return -1;
+	}
+
+    uint8_t txbuf[5];
+    txbuf[0] = 0x12;				// register 0x12 = GPIOA
+    txbuf[1] = a;					// GPIOA value
+    if ((rc=write(iic, txbuf, 2)) != 2)
+	{
+        DBG("write() failed %d\n", rc);
+		return -1;
+	}
+	return 0;
+}
+/**
+* Write a byte to port B
+*****************************************************************************/
+int mcp23017_write_b(int iic, int addr, uint8_t b)
+{
+    int rc = 0;
+    rc = ioctl(iic, I2C_SLAVE, addr);
+    if (rc < 0)
+	{
+        DBG("ioctl(I2C_SLAVE, %d) failed.  rc=%d\n", addr, rc);
+		return -1;
+	}
+
+    uint8_t txbuf[5];
+    txbuf[0] = 0x13;				// register 0x13 = GPIOB
+    txbuf[1] = b;					// GPIOB value
+    if ((rc=write(iic, txbuf, 2)) != 2)
+	{
+        DBG("write() failed %d\n", rc);
+		return -1;
+	}
+	return 0;
+}
+
 
 /**
 * Return 16-bit value from ports B and A (B=msb & A=lsb)
@@ -177,64 +256,84 @@ int mcp23017_set_dir(int iic, uint8_t addr, uint8_t a, uint8_t b)
 }
 
 /**
-* Set up the mcp23017.
-* @note This will leave asserted the RESET and /BUSRQ signals.
+* Set up the MCP23017 with all CTL lines in (floating) except RESET & BUSRQ.
+* @note This will leave the /BUSRQ signal asserted (and RESET not asserted.)
 *****************************************************************************/
 void mcp23017_init(int fd) 
 {
-	// preset the addres bus to zero
+	// preset the addres bus to zero (it doesn't really matter)
 	mcp23017_write(fd, I2C_EX1, 0, 0);
 
-	// preset the control lines to "off" & assert /BUSRQ
-	mcp23017_write(fd, I2C_EX2, 0xff, ~IO_BUSRQ);
+	// preset all the control lines to un-asserted except /BUSRQ
+	ctl_cache = (~IO_BUSRQ)&(~IO_RESET);
+	mcp23017_write(fd, I2C_EX2, 0xff, ctl_cache);	// data value = don't care
 
-	// put all bits of EX1 into output mode
-	mcp23017_set_dir(fd, I2C_EX1, 0, 0);	
+	// put all bits of EX1 (address bus) into output mode
+	mcp23017_set_dir(fd, I2C_EX1, IO_DIR_BUS_AD_OUT, IO_DIR_BUS_AD_OUT);	
 
 	// put EX2.A (databus) into input and EX2.B (control) as appropriate
-	mcp23017_set_dir(fd, I2C_EX2, 0xff, IO_BUSACK);	
+	data_dir_cache = IO_DIR_BUS_AD_IN;
+	mcp23017_set_dir(fd, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_OFF);	// this will assert /BUSRQ 
+
+	// At this point, the Z80 will have yielded control of the bus... 
+	// so take over the rest of the control signals.
+	// We don't care about /BUSACK because we want this to work even if
+	// there is no Z80 on the motherboard.
+	mcp23017_set_dir(fd, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_ON);	
+
+	// Cycle the RESET signal here to make sure the FLASH select logic is reset
+	mcp23017_write_b(fd, I2C_EX2, ctl_cache|IO_RESET);
+	mcp23017_write_b(fd, I2C_EX2, ctl_cache);	
 }
 
-
 /**
-* Release the bus & de-assert the RESET signal.
+* Assert RESET, release the bus & de-assert the RESET signal.
 *****************************************************************************/
 void release_bus(int iic)
 {
-	// Float all the address, data, and control lines EXCEPT for RESET
-	mcp23017_set_dir(iic, I2C_EX1, 0xff, 0xff);	// the address lines
+	// Float all the address, data, and control lines EXCEPT for RESET & /BUSRQ
+	mcp23017_set_dir(iic, I2C_EX1, IO_DIR_BUS_AD_IN, IO_DIR_BUS_AD_IN);		// release the address lines
+	mcp23017_set_dir(iic, I2C_EX2, IO_DIR_BUS_AD_IN, IO_DIR_BUS_CTL_OFF);	// release most of the ctl signals
 
-	mcp23017_set_dir(iic, I2C_EX2, 0xff, ~IO_RESET);	// data and all ctl except reset
+#if 1
+	// /BUSRQ will have already be asserted & RESET has already been cycled
+	ctl_cache = IO_BUSRQ; // de-assert /BUSRQ 
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache);	
 
-	// de-assert the RESET signal
-	mcp23017_write(iic, I2C_EX2, 0, 0);	// This changes only the one RESET output bit to low
-										// to shut off the external transistor
+#else
+	// /BUSRQ will have already be asserted 
+	ctl_cache = IO_RESET|IO_BUSRQ; // de-assert /BUSRQ and assert RESET
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache);	
+
+	// de-assert the RESET (while keeping /BUSRQ signal de-asserted)
+	ctl_cache &= ~IO_RESET;		// RESET=0, leave IO_BUSRQ=1
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache);
+#endif
 }
 
-
 /**
-* @param mem True if memory cycle else iorq cycle
+* It is assumed that mcp23017_init() is called before this.
 *****************************************************************************/
 int flash_write_cycle(int iic, uint16_t addr, uint8_t data)
 {
 	// set the value on the address bus
-//	mcp23017_write(iic, I2C_EX1, addr&0xff, (addr>>8)&0xff);
 	mcp23017_write(iic, I2C_EX1, (addr>>8)&0xff, addr&0xff);
 
-	// stage the data to write
-	mcp23017_write(iic, I2C_EX2, data, ~IO_BUSRQ);
+	// stage the data to write 
+	mcp23017_write_a(iic, I2C_EX2, data);
 
-	// turn on the data drivers
-	mcp23017_set_dir(iic, I2C_EX2, 0, IO_BUSACK);
+	if (data_dir_cache!=IO_DIR_BUS_AD_OUT)
+	{
+		// turn on the data drivers
+		data_dir_cache=IO_DIR_BUS_AD_OUT;
+		mcp23017_set_dir(iic, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_ON);
+	}
 
 	// assert /MREQ & /WR
-	mcp23017_write(iic, I2C_EX2, data, (~IO_MREQ)&(~IO_WR)&(~IO_BUSRQ));
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache&(~IO_MREQ)&(~IO_WR));
 
 	// un-assert /MREQ & /WR
-	mcp23017_write(iic, I2C_EX2, data, ~IO_BUSRQ);
-
-	// shut off the data drivers
-	mcp23017_set_dir(iic, I2C_EX2, 0xff, IO_BUSACK);
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache);
 
 	return 0;
 }
@@ -242,23 +341,37 @@ int flash_write_cycle(int iic, uint16_t addr, uint8_t data)
 /**
 * read a byte from flash at address: addr.
 *****************************************************************************/
-int flash_read_cycle(int iic, uint16_t addr)
+uint8_t flash_read_cycle(int iic, uint16_t addr)
 {
 	// set the value on the address bus
-//	mcp23017_write(iic, I2C_EX1, addr&0xff, (addr>>8)&0xff);
 	mcp23017_write(iic, I2C_EX1, (addr>>8)&0xff, addr&0xff);
 
-	// assert /MREQ & /RD with dummy data
-	mcp23017_write(iic, I2C_EX2, 0, (~IO_MREQ)&(~IO_RD)&(~IO_BUSRQ));
+	if (data_dir_cache!=IO_DIR_BUS_AD_IN)
+	{
+		// turn off the data drivers
+		data_dir_cache=IO_DIR_BUS_AD_IN;
+		mcp23017_set_dir(iic, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_ON);
+	}
+
+	// assert /MREQ & /RD
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache&(~IO_MREQ)&(~IO_RD));
 
 	// READ the data bus
 	int rc = mcp23017_read(iic, I2C_EX2);
 
 	// un-assert /MREQ & /RD
-	mcp23017_write(iic, I2C_EX2, 0, ~IO_BUSRQ);
+	mcp23017_write_b(iic, I2C_EX2, ctl_cache);
 
 	return rc&0xff;
 }
+
+
+
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+//***************************************************************************
+
 
 
 
@@ -276,16 +389,17 @@ int flash_send_sdp(int iic, uint8_t cmd)
 /**
 * Read and print the Product ID.
 *****************************************************************************/
-int flash_read_product_id(int iic)
+uint16_t flash_read_product_id(int iic)
 {
 	flash_send_sdp(iic, 0x90);				// Software ID read
 
-	int mfg = flash_read_cycle(iic, 0);		// read a byte from address 0
-	int prod = flash_read_cycle(iic, 1);	// read a byte from address 1
+	uint16_t mfg = flash_read_cycle(iic, 0);		// read a byte from address 0
+	uint16_t prod = flash_read_cycle(iic, 1);	// read a byte from address 1
 	printf("Product ID: 0x%02x, 0x%02x\n", mfg, prod);
 
 	flash_send_sdp(iic, 0xf0);				// Software ID Exit
-	return 0;
+
+	return (mfg<<8)|prod;
 }
 
 /**
@@ -294,11 +408,11 @@ int flash_read_product_id(int iic)
 *****************************************************************************/
 int flash_chip_erase(int iic)
 {
-	printf("Begin chip erase\n");
+	//printf("Begin chip erase\n");
 	flash_send_sdp(iic, 0x80);
 	flash_send_sdp(iic, 0x10);
 	usleep(200000);		// some extra margin!
-	printf("End chip erase\n");
+	//printf("End chip erase\n");
 	return 0;
 }
 
@@ -310,7 +424,7 @@ int flash_program_byte(int iic, uint16_t addr, uint8_t data)
 {
 	flash_send_sdp(iic, 0xa0);
 	flash_write_cycle(iic, addr, data);
-	usleep(25);		// some extra margin!
+	usleep(21);		// some extra margin!
 	return(0);
 }
 
@@ -334,46 +448,82 @@ int flash_program_byte(int iic, uint16_t addr, uint8_t data)
 int main()
 {
     int     iic;
+	char	buf[65536];
 
     iic = openIIC(I2C_DEV);
 	mcp23017_init(iic);
 
-	flash_read_product_id(iic);
+	uint16_t d = flash_read_product_id(iic);
+	if (d != 0xbfb5)
+	{
+		printf("Invalid FLASH signature: 0x%04x != 0xbfb5\n", d);
+		exit(1);
+	}
 
 	uint16_t addr = 0;
 #if 1
 
 #if 1
+	printf("Erasing entire chip\n");
 	flash_chip_erase(iic);
 #endif
 
 #if 1
+
+	printf("Programming\n");
 	// Program the flash direct from stdin 
 	uint8_t b;
 	while(read(fileno(stdin), &b, 1) == 1)
 	{
+		if (addr%16 == 0)
+			printf("%s%04x:", addr==0?"":"\n", addr);
+		printf(" %02x", b);
+
+		buf[addr] = b;
 		flash_program_byte(iic, addr, b);
-		printf("0x%02x: %02x\n", addr, b);
 		++addr;
+
+		if (addr > sizeof(buf))
+		{
+			printf("program file is too big, limiting to %d bytes\n", sizeof(buf));
+			break;
+		}
 	}
+	printf("\n");
 
 	printf("**********************************************************\n");
 #endif
 
 #endif
+
+	printf("Reading\n");
+	char	rbuf[65536];
+
 	// read the flash back again
 	if (addr == 0)
-		addr = 0x100;
+		addr = 0x100;	// just read 0x100 bytes if we didn't write anything
 
 	uint raddr = 0;
 	while(raddr < addr)
 	{
-		uint8_t b = flash_read_cycle(iic, raddr);
-		printf("0x%02x: %02x\n", raddr, b);
+		rbuf[raddr] = flash_read_cycle(iic, raddr);
+
+		if (raddr%16 == 0)
+			printf("%s%04x:", raddr==0?"":"\n", raddr);
+		printf(" %02x", rbuf[raddr]);
+
 		++raddr;
 	}
+	printf("\n");
 
 	release_bus(iic);
+
+	
+	printf("Verifying.\n");
+	if (memcmp(buf, rbuf, addr) == 0)
+		printf("SUCCESS!\n");
+	else
+		printf("FAILED!\n");
 
 	return 0;
 }
