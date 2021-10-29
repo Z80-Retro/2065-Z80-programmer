@@ -268,18 +268,19 @@ void mcp23017_init(int fd)
 	ctl_cache = (~IO_BUSRQ)&(~IO_RESET);
 	mcp23017_write(fd, I2C_EX2, 0xff, ctl_cache);	// data value = don't care
 
-	// put all bits of EX1 (address bus) into output mode
-	mcp23017_set_dir(fd, I2C_EX1, IO_DIR_BUS_AD_OUT, IO_DIR_BUS_AD_OUT);	
-
 	// put EX2.A (databus) into input and EX2.B (control) as appropriate
 	data_dir_cache = IO_DIR_BUS_AD_IN;
 	mcp23017_set_dir(fd, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_OFF);	// this will assert /BUSRQ 
+
 
 	// At this point, the Z80 will have yielded control of the bus... 
 	// so take over the rest of the control signals.
 	// We don't care about /BUSACK because we want this to work even if
 	// there is no Z80 on the motherboard.
 	mcp23017_set_dir(fd, I2C_EX2, data_dir_cache, IO_DIR_BUS_CTL_ON);	
+
+	// put all bits of EX1 (address bus) into output mode
+	mcp23017_set_dir(fd, I2C_EX1, IO_DIR_BUS_AD_OUT, IO_DIR_BUS_AD_OUT);	
 
 	// Cycle the RESET signal here to make sure the FLASH select logic is reset
 	mcp23017_write_b(fd, I2C_EX2, ctl_cache|IO_RESET);
