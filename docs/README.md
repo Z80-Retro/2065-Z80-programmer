@@ -12,3 +12,7 @@ To create a pdf file:
 To install a pdf file viewer, install evince like this:
 
 	sudo apt install evince
+
+To open the pdf file with evince:
+
+	evince 2065-Z80-programmer.pdf
