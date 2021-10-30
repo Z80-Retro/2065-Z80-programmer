@@ -7,6 +7,6 @@ An in-circuit programmer for the FLASH on a [2063-Z80](https://github.com/johnwi
 * Here is another [BOM](2065-Z80-programmer-sockets.md) with links to sockets for the chips.
 * A Raspberry PI application for this board can be found in the [pi](pi) directory.
 * To configure a new PI for use with this programmer board as well as to develop Z80 code 
-for the Z80 Retro board, see this [PI Setup Guide](pi/RaspberryPiOS.md)
+for the Z80 Retro board, see this [PI Setup Guide](https://github.com/johnwinans/raspberry-pi-install)
 
 ![PC Board Image](2065-Z80-programmer.jpg "ICE FLASH Programmer for 2063-Z80.jpg")
