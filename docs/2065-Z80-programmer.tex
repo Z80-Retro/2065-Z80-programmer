@@ -89,11 +89,11 @@
 \begin{figure}[ht]
 \centering
 \begin{tikztimingtable} [yscale=1.5,xscale=2,timing/slope=0.05,timing/coldist=1pt]
- $A_0-A_{15}$			& { 3D{}3H6D } \\
+ $A_0-A_{15}$			& { 3D{}7H2D } \\
  $D_0-D_{7}$			& { 3D{}9H } \\
  $\overline{BUSRQ}$		& { 2H10L }\\
  $\overline{BUSACK}$	& { 2HH9L }\\
- $\overline{RESET}$		& { 8HLL2H }\\
+ $\overline{RESET}$		& { 6HLL4H }\\
  $\overline{RD}$		& { 3D{}9H }\\
  $\overline{WR}$		& { 3D{}9H }\\
  $\overline{MREQ}$		& { 3D{}9H }\\
@@ -110,7 +110,7 @@
                 node [below,inner sep=2pt] {\scalebox{.75}{\i}};
 %    \draw [fill=c_lightgray,c_lightgray] (0,-4) rectangle (2,-3);
  \end{pgfonlayer}
-	\draw(8,.5) node{0000};			% A0-15
+	\draw(11,.5) node{0000};			% A0-15
 	\draw(1,.5) node{Z80};		% A0-15
 	\draw(4.5,.5) node{pullup};		% A0-15
 	\draw(1,-1.5) node{Z80};	% D0-7
@@ -167,7 +167,7 @@
 	\draw(8,.5) node{addr};
 	\draw(8,-1.5) node{data};
 \end{tikztimingtable}
-\caption{\tt flash\_write\_cycle()}
+\caption{\tt bus\_write\_cycle()}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -202,7 +202,7 @@
 	\draw(8,.5) node{addr};
 	\draw(8,-1.5) node{data};
 \end{tikztimingtable}
-\caption{\tt flash\_read\_cycle()}
+\caption{\tt bus\_read\_cycle()}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -211,16 +211,16 @@
 \begin{figure}[ht]
 \centering
 \begin{tikztimingtable} [yscale=1.5,xscale=2,timing/slope=0.05,timing/coldist=1pt]
- $A_0-A_{15}$			& { 2D6Z2D } \\
- $D_0-D_{7}$			& { 4D4Z2D } \\
+ $A_0-A_{15}$			& { 2D5Z3D } \\
+ $D_0-D_{7}$			& { 4D3Z3D } \\
  $\overline{BUSRQ}$		& { 6LHHHH }\\
  $\overline{BUSACK}$	& { 7LHHH }\\
- $\overline{RESET}$		& { 10H }\\
- $\overline{RD}$		& { 4H4Z2D }\\
- $\overline{WR}$		& { 4H4Z2D }\\
- $\overline{MREQ}$		& { 4H4Z2D }\\
- $\overline{IORQ}$		& { 4H4Z2D }\\
- $\overline{M1}$		& { 8H2D }\\
+ $\overline{RESET}$		& { 6HLLHH }\\
+ $\overline{RD}$		& { 4H3Z3D }\\
+ $\overline{WR}$		& { 4H3Z3D }\\
+ $\overline{MREQ}$		& { 4H3Z3D }\\
+ $\overline{IORQ}$		& { 4H3Z3D }\\
+ $\overline{M1}$		& { 7H3D }\\
 \extracode
  \makeatletter
  \begin{pgfonlayer}{background}
@@ -235,7 +235,7 @@
 %	\draw(8,.5) node{0000};
 %	\draw(7,-1.5) node{ff};
 \end{tikztimingtable}
-\caption{\tt release\_bus()}
+\caption{\tt bus\_release()}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
