@@ -460,10 +460,15 @@ int flash_chip_erase(int iic)
 *****************************************************************************/
 int flash_program_byte(int iic, uint16_t addr, uint8_t data)
 {
+#if 1
+	if (data == 0xff)
+		return 0;		// no need to program 0xff since that is the erased state
+#endif
+
 	flash_send_sdp(iic, 0xa0);
 	bus_write_cycle(iic, addr, data);
 	usleep(21);		// some extra margin!
-	return(0);
+	return 0;
 }
 
 
