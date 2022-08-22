@@ -260,7 +260,7 @@ int mcp23017_set_dir(int iic, uint8_t addr, uint8_t a, uint8_t b)
     rc = ioctl(iic, I2C_SLAVE, addr);
     if (rc < 0)
 	{
-        DBG("ioctl(I2C_SLAVE, %d) failed.  rc=%d\n", addr, rc);
+        DBG("ioctl(I2C_SLAVE, %d) failed.  rc=%d\n", (int)addr, rc);
 		return -1;
 	}
 
@@ -532,7 +532,7 @@ exit(0);
 
 		if (addr > sizeof(buf))
 		{
-			printf("program file is too big, limiting to %d bytes\n", sizeof(buf));
+			printf("program file is too big, limiting to %d bytes\n", (int)sizeof(buf));
 			break;
 		}
 	}
