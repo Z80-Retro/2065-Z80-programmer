@@ -27,6 +27,12 @@
 //
 // The PI communicates with the 2065-Z80-programmer using I2C.
 
+// un-comment for the AM29F040B
+//#define AM29F040B
+
+
+
+
 
 #include <errno.h>
 
@@ -413,9 +419,16 @@ uint8_t bus_read_cycle(int iic, uint16_t addr)
 int flash_send_sdp(int iic, uint8_t cmd)
 {
 	int rc = 0;
+#ifdef AM29F040B
+	rc |= bus_write_cycle(iic, 0x555, 0xAA);
+	rc |= bus_write_cycle(iic, 0x2AA, 0x55);
+	rc |= bus_write_cycle(iic, 0x555, cmd);
+#else
 	rc |= bus_write_cycle(iic, 0x5555, 0xAA);
 	rc |= bus_write_cycle(iic, 0x2AAA, 0x55);
 	rc |= bus_write_cycle(iic, 0x5555, cmd);
+#endif
+
 	return rc;
 }
 
@@ -430,10 +443,15 @@ uint16_t flash_read_product_id(int iic)
 	flash_send_sdp(iic, 0x90);				// Software ID read
 
 	uint16_t mfg = bus_read_cycle(iic, 0);	// read a byte from address 0
+#ifdef AM29F040B
+	flash_send_sdp(iic, 0x90);				// Software ID read
+#endif
 	uint16_t prod = bus_read_cycle(iic, 1);	// read a byte from address 1
 	printf("Product ID: 0x%02x, 0x%02x\n", mfg, prod);
 
+#ifndef AM29F040B
 	flash_send_sdp(iic, 0xf0);				// Software ID Exit
+#endif
 
 	return (mfg<<8)|prod;
 }
@@ -496,7 +514,11 @@ int main()
 	mcp23017_init(iic);
 
 	uint16_t d = flash_read_product_id(iic);
+#ifdef AM29F040B
+	if (d != 0x01a4)
+#else
 	if (d != 0xbfb5 && d != 0xbfb6 && d != 0xbfb7)
+#endif
 	{
 		printf("Invalid FLASH signature: 0x%04x != 0xbfb5\n", d);
 		exit(1);
