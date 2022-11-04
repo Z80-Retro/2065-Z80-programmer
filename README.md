@@ -9,4 +9,4 @@ An in-circuit programmer for the FLASH on a [2063-Z80](https://github.com/johnwi
 * To configure a new PI for use with this programmer board as well as to develop Z80 code 
 for the Z80 Retro board, see this [PI Setup Guide](https://github.com/johnwinans/raspberry-pi-install)
 
-![PC Board Image](2065-Z80-programmer.jpg "ICE FLASH Programmer for 2063-Z80.jpg")
+![PC Board Image](2065-Z80-programmer.jpg "ICE FLASH Programmer for 2063-Z80")
