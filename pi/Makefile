@@ -1,7 +1,7 @@
 CFLAGS+=-Wall -Werror
 LDLIBS+=-li2c
 
-all: flash
+all: flash z80reset
 
 world: clean all
 
