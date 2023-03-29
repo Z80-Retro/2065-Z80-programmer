@@ -524,7 +524,9 @@ F 1 "Conn_01x05" H 1250 1250 50  0001 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 1050 1600 50  0001 C CNN
 F 3 "https://media.digikey.com/PDF/Data%20Sheets/Sullins%20PDFs/xRxCzzzSxxN-RC_ST_11635-B.pdf" H 1050 1600 50  0001 C CNN
 F 4 "Generic connector, single row, 01x05" H 1050 1600 50  0001 C CNN "Description"
-F 5 "S1211EC-05-ND" H 1050 1600 50  0001 C CNN "Digi-Key_PN"
+F 5 "S1011EC-05-ND" H 1050 1600 50  0001 C CNN "Digi-Key_PN"
+F 6 "PRPC005SAAN-RC" H 1050 1600 50  0001 C CNN "MPN"
+F 7 "Sullins Connector Solutions" H 1050 1600 50  0001 C CNN "Manufacturer"
 	1    1050 1600
 	-1   0    0    1   
 $EndComp
