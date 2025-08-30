@@ -552,7 +552,7 @@ exit(0);
 		flash_program_byte(iic, addr, b);
 		++addr;
 
-		if (addr > sizeof(buf))
+		if (addr >= sizeof(buf))
 		{
 			printf("program file is too big, limiting to %d bytes\n", (int)sizeof(buf));
 			break;
