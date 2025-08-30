@@ -529,7 +529,7 @@ bus_release(iic);
 exit(0);
 #endif
 
-	uint16_t addr = 0;
+	uint32_t addr = 0;
 #if 1
 
 #if 1
@@ -572,7 +572,7 @@ exit(0);
 	if (addr == 0)
 		addr = 0x100;	// just read 0x100 bytes if we didn't write anything
 
-	uint raddr = 0;
+	uint32_t raddr = 0;
 	while(raddr < addr)
 	{
 		rbuf[raddr] = bus_read_cycle(iic, raddr);
