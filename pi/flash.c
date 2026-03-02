@@ -517,7 +517,7 @@ int main()
 #ifdef AM29F040B
 	if (d != 0x01a4)
 #else
-	if (d != 0xbfb5 && d != 0xbfb6 && d != 0xbfb7)
+	if (d != 0xbfb5 && d != 0xbfb6 && d != 0xbfb7 && d != 0x3ec0)
 #endif
 	{
 		printf("Invalid FLASH signature: 0x%04x != 0xbfb5\n", d);
